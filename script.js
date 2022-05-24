@@ -9,7 +9,7 @@
       container: 'map', // container ID
       style: 'mapbox://styles/mapstertech/cl3iscp8k001815pnnpg6usjr', // style URL
       center: [16.6813799860, 42.7247182], // starting position [lng, lat]
-      zoom: 4.02284 // starting zoom
+      zoom: 3.02284 // starting zoom
   });
 
   map.addControl(new mapboxgl.NavigationControl(), 'bottom-left');
@@ -312,7 +312,9 @@
             { hover: false }
           );
         }
-        map.getSource('temp-poly').setData({ type : "FeatureCollection", features : []});
+        if(map.getSource('temp-poly')) {
+          map.getSource('temp-poly').setData({ type : "FeatureCollection", features : []});
+        }
         map.getCanvas().style.cursor = '';
         hoveredStateId = null;
       }
@@ -337,6 +339,30 @@
     $( function() {
 
 
+      const expression = [
+        "case",
+        [
+          "all",
+          ["<=", ["to-number", ["get", "minDate"]], 0],
+          [">=", ["to-number", ["get", "maxDate"]], 0]
+        ],
+        1,
+        0
+      ]
+      const iconExpression = [
+        "case",
+        [
+          "all",
+          ["<=", ["to-number", ["get", "minDate"]], 0],
+          [">=", ["to-number", ["get", "maxDate"]], 0]
+        ],
+        0.3,
+        0
+      ]
+      map.setPaintProperty('pleiades_places_symbols', 'icon-opacity', iconExpression)
+      map.setPaintProperty('pleiades_places_areas', 'text-opacity', expression)
+      map.setPaintProperty('pleiades_places', 'text-opacity', expression)
+      map.setPaintProperty('pleiades_places_nature', 'icon-opacity', expression)
       $( "#slider" ).slider({
         min: minDate,
         max: maxDate,
@@ -352,8 +378,20 @@
             1,
             0
           ]
-          map.setPaintProperty('pleiades_places_settlements', 'text-opacity', expression)
-          map.setPaintProperty('pleiades_places_settlements', 'icon-opacity', expression)
+          const iconExpression = [
+            "case",
+            [
+              "all",
+              ["<=", ["to-number", ["get", "minDate"]], ui.value],
+              [">=", ["to-number", ["get", "maxDate"]], ui.value]
+            ],
+            0.3,
+            0
+          ]
+          map.setPaintProperty('pleiades_places_symbols', 'icon-opacity', iconExpression)
+          map.setPaintProperty('pleiades_places_areas', 'text-opacity', expression)
+          map.setPaintProperty('pleiades_places', 'text-opacity', expression)
+          map.setPaintProperty('pleiades_places_nature', 'icon-opacity', expression)
           $( "#time" ).val( returnReadableDate(ui.value) );
         }
       });
