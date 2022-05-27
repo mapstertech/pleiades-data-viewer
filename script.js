@@ -5,25 +5,25 @@
 
   /* Making mini file */
   // /*
-  let reducedFeatures = [];
-  fetch('./files/pleiades-places.csv').then(resp => resp.text()).then(response => {
-    console.log(response);
-    csv({ output: "json"}).fromString(response).then(function(result){
-     console.log(result)
-     // latitude, longitude, geoContent
-     result.forEach(item => {
-       if(item.geoContext !== "" && item.longitude !== "" && item.latitude !== "") {
-         if(!reducedFeatures.find(feature => feature.n === item.title)) {
-           reducedFeatures.push({
-             c : [parseFloat(item.longitude), parseFloat(item.latitude)],
-             n : item.title
-           })
-         }
-       }
-     })
-     console.log(reducedFeatures);
-    })
-  })
+  // let reducedFeatures = [];
+  // fetch('./files/pleiades-places.csv').then(resp => resp.text()).then(response => {
+  //   console.log(response);
+  //   csv({ output: "json"}).fromString(response).then(function(result){
+  //    console.log(result)
+  //    // latitude, longitude, geoContent
+  //    result.forEach(item => {
+  //      if(item.geoContext !== "" && item.longitude !== "" && item.latitude !== "") {
+  //        if(!reducedFeatures.find(feature => feature.n === item.title)) {
+  //          reducedFeatures.push({
+  //            c : [parseFloat(item.longitude), parseFloat(item.latitude)],
+  //            n : item.title
+  //          })
+  //        }
+  //      }
+  //    })
+  //    console.log(reducedFeatures);
+  //   })
+  // })
   // */
 
   let miniLocationsFile = false;
