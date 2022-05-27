@@ -71,7 +71,7 @@
   })
   document.getElementById('autocomplete').appendChild(geocoder.onAdd(map));
 
-  $('#category-panel').height(window.innerHeight - 120);
+  // $('#category-panel').height(window.innerHeight - 120);
   placetypeValues.forEach(placetype => {
     $('#placetypes .accordion-body').append(`
       <div><input type="checkbox" checked="checked" value="${placetype}"> ${placetype.replace('-', ' ')}</div>
