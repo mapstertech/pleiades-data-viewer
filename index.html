@@ -16,6 +16,8 @@
 <script src="https://cdn.rawgit.com/Keyang/node-csvtojson/d41f44aa/browser/csvtojson.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
+<script src="https://cdn.rawgit.com/Keyang/node-csvtojson/d41f44aa/browser/csvtojson.min.js"></script>
+
 </head>
 <body>
 <nav class="navbar bg-light">
@@ -82,8 +84,36 @@
   </div>
   <ul class="list-group" style="margin-top: 10px;">
     <li class="list-group-item">Click any label on the left to see more information.</li>
-    <li id="more-info" class="list-group-item"></li>
+    <li id="more-info" class="list-group-item">
+      <h3 id="item-title">Title</h3>
+      <p id="item-description">Description</p>
+      <a href="" target="_blank" style="float:right; margin-bottom: 10px;" id="item-link">Location listing on Pleiades.org ↗</a>
+      <table class="table">
+        <tbody>
+          <tr><td>Time Periods</td><td id="item-timePeriods"></td></tr>
+          <tr><td>Start Date</td><td id="item-minDate"></td></tr>
+          <tr><td>End Date</td><td id="item-maxDate"></td></tr>
+        </tbody>
+      </table>
+      <button class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" id="modal-info">More Details</button>
+    </li>
   </ul>
+</div>
+
+<div class="modal modal-lg" tabindex="-1" id="exampleModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script src='./script.js'></script>
